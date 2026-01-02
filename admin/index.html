@@ -1,83 +1,25 @@
-backend:
-  name: git-gateway
-  branch: main # Branch to update (optional; defaults to main)
-
-# Enable local development mode (optional)
-# local_backend: true
-
-# Publish mode: editorial workflow for drafts
-publish_mode: editorial_workflow
-
-# Media files configuration
-media_folder: "images" # Media files will be stored in the repo under images
-public_folder: "/images" # The src attribute for uploaded media will begin with /images
-
-# Collections define the structure for different content types
-collections:
-  # Homepage Content
-  - name: "pages"
-    label: "Pages"
-    files:
-      - label: "Home Page"
-        name: "home"
-        file: "content/home.json"
-        fields:
-          - { label: "Hero Title", name: "hero_title", widget: "string", default: "The LV Insiders Table" }
-          - { label: "Hero Subtitle", name: "hero_subtitle", widget: "string", default: "Where Culinary Art Meets Connection" }
-          - { label: "Hero Description", name: "hero_description", widget: "text", default: "An intimate gathering of minds, united by exceptional cuisine and extraordinary conversation" }
-          - { label: "About Lead Text", name: "about_lead", widget: "text", default: "The LV Insiders Table is more than a dining experience—it's a curated journey where professionals from diverse industries converge over meticulously crafted meals." }
-          - { label: "About Paragraph 1", name: "about_p1", widget: "text" }
-          - { label: "About Paragraph 2", name: "about_p2", widget: "text" }
-
-      - label: "Contact Information"
-        name: "contact"
-        file: "content/contact.json"
-        fields:
-          - { label: "Location", name: "location", widget: "string", default: "Las Vegas, Nevada" }
-          - { label: "Instagram Handle", name: "instagram", widget: "string", default: "@lvinsiderstable" }
-          - { label: "Instagram URL", name: "instagram_url", widget: "string", default: "https://www.instagram.com/lvinsiderstable/" }
-          - { label: "Contact Email (optional)", name: "email", widget: "string", required: false }
-          - { label: "Phone (optional)", name: "phone", widget: "string", required: false }
-
-  # Gallery Images
-  - name: "gallery"
-    label: "Gallery Images"
-    folder: "content/gallery"
-    create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
-    fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Image", name: "image", widget: "image" }
-      - { label: "Description", name: "description", widget: "text", required: false }
-      - { label: "Date", name: "date", widget: "datetime" }
-      - { label: "Published", name: "published", widget: "boolean", default: true }
-
-  # Events/Themes
-  - name: "events"
-    label: "Events & Themes"
-    folder: "content/events"
-    create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
-    fields:
-      - { label: "Event Title", name: "title", widget: "string" }
-      - { label: "Event Date", name: "date", widget: "datetime" }
-      - { label: "Theme", name: "theme", widget: "string" }
-      - { label: "Description", name: "description", widget: "text" }
-      - { label: "Menu Highlights", name: "menu", widget: "text", required: false }
-      - { label: "Featured Image", name: "image", widget: "image", required: false }
-      - { label: "Published", name: "published", widget: "boolean", default: false }
-
-  # Site Settings
-  - name: "settings"
-    label: "Site Settings"
-    files:
-      - label: "General Settings"
-        name: "general"
-        file: "content/settings.json"
-        fields:
-          - { label: "Site Title", name: "site_title", widget: "string", default: "The LV Insiders Table" }
-          - { label: "Site Description", name: "site_description", widget: "text" }
-          - { label: "Primary Color", name: "primary_color", widget: "string", default: "#1a1a1a" }
-          - { label: "Accent Color", name: "accent_color", widget: "string", default: "#d4af37" }
-          - { label: "Show Gallery Section", name: "show_gallery", widget: "boolean", default: true }
-          - { label: "Show Events Section", name: "show_events", widget: "boolean", default: true }
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Content Manager - The LV Insiders Table</title>
+  <!-- Include the script that builds the page and powers Decap CMS -->
+  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+</head>
+<body>
+  <!-- A little help text for the user -->
+  <script>
+    // Initialize CMS
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", user => {
+        if (!user) {
+          window.netlifyIdentity.on("login", () => {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+    }
+  </script>
+</body>
+</html>
